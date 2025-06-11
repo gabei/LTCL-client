@@ -42,7 +42,7 @@ return (
       </header>
       <main>
         <div className="search-box">
-          <input value={isbn} onChange={handleChange} placeholder="Enter ISBN"></input>
+          <input value={isbn} onChange={handleChange} placeholder="Enter ISBN or OCLC number"></input>
           <button onClick={handlesubmit}>Search</button>
         </div>
         <div className="data-display">
