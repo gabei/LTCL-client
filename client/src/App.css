@@ -65,6 +65,8 @@ main {
 
 .search-box button:hover {
   background-color: #3C2932;
+  outline: none;
+  border: none;
 }
 
 .data-display {
