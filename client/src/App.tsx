@@ -36,7 +36,15 @@ function App() {
     )
   }
 
-  const loadingMessage = <p>{message}</p>
+  const loadingMessage = () => {
+    return (
+      <div>
+        <p>{message}</p>
+        <img className="loading-icon" src={loadingIcon}></img>
+      </div>
+    )
+    
+  }
 
 return (
     <div>
@@ -49,9 +57,8 @@ return (
           <button onClick={handlesubmit}>Search</button>
         </div>
         <div className="data-display">
-          <div>{searching ? loadingMessage : renderData()}</div>
-          <img className="loading-icon" src={loadingIcon}></img>
-          </div>
+            {searching ? loadingMessage() : renderData()}
+        </div>
       </main>
     </div>
   )
