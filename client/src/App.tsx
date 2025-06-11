@@ -37,9 +37,12 @@ function App() {
 
 return (
     <div>
+      <header></header>
       <main>
-        <input value={isbn} onChange={handleChange} placeholder="Enter ISBN"></input>
-        <button onClick={handlesubmit}>Search</button>
+        <div className="search-box">
+          <input value={isbn} onChange={handleChange} placeholder="Enter ISBN"></input>
+          <button onClick={handlesubmit}>Search</button>
+        </div>
         <div>{data ? renderData() : loadingMessage}</div>
       </main>
     </div>
