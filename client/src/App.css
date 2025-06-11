@@ -49,10 +49,22 @@ main {
   font-size: inherit;
 }
 
+.search-box input:focus-visible {
+  background: white;
+  outline: none;
+}
+
 .search-box button {
   border-radius: 0px 1rem 1rem 0px;
   height: 1;
   padding: 1rem;
+  background-color: #714C5F;
+  color: #fff;
+  transition: .2s all;
+}
+
+.search-box button:hover {
+  background-color: #3C2932;
 }
 
 .data-display {
