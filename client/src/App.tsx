@@ -7,8 +7,7 @@ function App() {
   const [message, setMessage] = useState("");
 
   const handleChange = (e:Event) => {
-    e.target.value ? setIsbn(e.target.value) : null
-
+    setIsbn(e.target.value);
   }
 
   const handlesubmit = async (e:Event) => {
@@ -37,7 +36,9 @@ function App() {
 
 return (
     <div>
-      <header></header>
+      <header className="header">
+        <div className="header-texture"></div>
+      </header>
       <main>
         <div className="search-box">
           <input value={isbn} onChange={handleChange} placeholder="Enter ISBN"></input>
