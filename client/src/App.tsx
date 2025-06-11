@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import loadingIcon from './assets/loading.svg';
 import './App.css'
+import loadingMessage from './loadingMessage/loadingMessage';
 
 function App() {
   const [isbn, setIsbn] = useState("");
@@ -13,9 +13,9 @@ function App() {
   }
 
   const handlesubmit = async (e:Event) => {
-    console.log(isbn);
     setSearching(true);
     setMessage(`Searching for lender codes for ${isbn}...`);
+
     const newData = await fetchData(isbn);
     setData(newData);
     setSearching(false);
@@ -24,7 +24,6 @@ function App() {
   const fetchData = async(query:string) => {
     const url = "http://localhost:8000/search?code=";
     const response = await fetch(url + query);
-    console.log(response);
     return response.json();
   }
 
@@ -34,16 +33,6 @@ function App() {
         {data.map((item) => <li>{item}</li>)}
       </ul>
     )
-  }
-
-  const loadingMessage = () => {
-    return (
-      <div>
-        <p>{message}</p>
-        <img className="loading-icon" src={loadingIcon}></img>
-      </div>
-    )
-    
   }
 
 return (
@@ -57,7 +46,7 @@ return (
           <button onClick={handlesubmit}>Search</button>
         </div>
         <div className="data-display">
-            {searching ? loadingMessage() : renderData()}
+            {searching ? loadingMessage(message) : renderData()}
         </div>
       </main>
     </div>
