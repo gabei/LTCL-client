@@ -32,6 +32,7 @@ main {
   margin: 0 auto;
   text-align:center;
   font-size: 1rem;
+  max-width: 50rem;
 }
 
 .search-box {
@@ -54,12 +55,38 @@ main {
   padding: 1rem;
 }
 
+.data-display {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;;
+}
+
+.loading-icon {
+  width: 1rem;
+  animation-name: spin;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
 @keyframes scroll {
   from {
     mask-position-y: 50%
   }
   to {
     mask-position-y: -150%;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(360deg)
   }
 }
 
