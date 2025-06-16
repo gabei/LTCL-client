@@ -1,20 +1,15 @@
 import { useState } from 'react'
 import './App.css'
-import loadingMessage from './loadingMessage/loadingMessage';
+import LoadingMessage from './LoadingMessage/LoadingMessage';
+import BookData from './BookData/BookData';
+import { type ApiResponse } from './types/types';
 
-type ApiResponse = {
-  title: string,
-  author: string,
-  publisher: string,
-  isbn: string,
-  oclc: string,
-  lenderData: Array<string>
-}
 
 function App() {
   const [isbn, setIsbn] = useState("");
   const [message, setMessage] = useState("");
   const [searching, setSearching] = useState(false);
+  const [searchIsComplete, setSearchIsComplete] = useState(false);
   const [data, setData] = useState<ApiResponse>(
     {
       title: "",
@@ -31,12 +26,14 @@ function App() {
   }
 
   const handlesubmit = async (e:Event) => {
+    setSearchIsComplete(false);
     setSearching(true);
-    setMessage(`Searching for lender codes for ${isbn}...`);
+    setMessage(`Searching for lender codes for ${isbn}. Do not navigate away from this page... `);
 
     const newData = await fetchData(isbn);
     setData(newData);
     setSearching(false);
+    setSearchIsComplete(true);
     console.log(newData);
   }
 
@@ -46,24 +43,7 @@ function App() {
     return response.json();
   }
 
-  /* new component */
-  const renderData = () => {
-    return (
-      <div className="book-data">
-        <ul className="book-data__list">
-          <li><strong>Title:</strong> {data.title}</li>
-          <li><strong>Author:</strong> {data.author}</li>
-          <li><strong>Publisher:</strong> {data.publisher}</li>
-          <li><strong>ISBN:</strong> {data.isbn}</li>
-          <li><strong>OCLC:</strong> {data.oclc}</li>
-        </ul>
-        <h2>Lender Codes</h2>
-        <ul className="lender-list">
-        {data.lenderData.map((item:string) => <li>{item}</li>)}
-        </ul>
-      </div>
-    )
-  }
+  
 
 return (
     <div>
@@ -76,7 +56,8 @@ return (
           <button onClick={handlesubmit}>Search</button>
         </div>
         <div className="data-display">
-            {searching ? loadingMessage(message) : renderData()}
+            {searching && LoadingMessage(message)}
+            {searchIsComplete && BookData(data)}
         </div>
       </main>
     </div>

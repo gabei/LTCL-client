@@ -1,0 +1,17 @@
+.BookData {
+  text-align: left;
+}
+
+.BookData ul {
+  list-style-type: none;
+}
+
+.lender-list {
+  height: 15rem;
+  overflow: scroll;
+}
+
+.warning {
+  font-weight: 800;
+  color: red;
+}

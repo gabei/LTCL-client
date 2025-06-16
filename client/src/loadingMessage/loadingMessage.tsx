@@ -1,7 +1,7 @@
-import './loadingMessage.css';
+import './LoadingMessage.css';
 import loadingIcon from '../assets/loading.svg';
 
-export default function loadingMessage(message:string){
+export default function LoadingMessage(message:string){
     return (
       <div>
         <p>{message}</p>
