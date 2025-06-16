@@ -2,11 +2,29 @@ import { useState } from 'react'
 import './App.css'
 import loadingMessage from './loadingMessage/loadingMessage';
 
+type ApiResponse = {
+  title: string,
+  author: string,
+  publisher: string,
+  isbn: string,
+  oclc: string,
+  lenderData: Array<string>
+}
+
 function App() {
   const [isbn, setIsbn] = useState("");
-  const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
   const [searching, setSearching] = useState(false);
+  const [data, setData] = useState<ApiResponse>(
+    {
+      title: "",
+      author: "",
+      publisher: "",
+      isbn: "",
+      oclc: "",
+      lenderData: []
+    }
+  );
 
   const handleChange = (e:Event) => {
     setIsbn(e.target.value);
@@ -19,6 +37,7 @@ function App() {
     const newData = await fetchData(isbn);
     setData(newData);
     setSearching(false);
+    console.log(newData);
   }
 
   const fetchData = async(query:string) => {
@@ -27,11 +46,22 @@ function App() {
     return response.json();
   }
 
+  /* new component */
   const renderData = () => {
     return (
-      <ul>
-        {data.map((item) => <li>{item}</li>)}
-      </ul>
+      <div className="book-data">
+        <ul className="book-data__list">
+          <li><strong>Title:</strong> {data.title}</li>
+          <li><strong>Author:</strong> {data.author}</li>
+          <li><strong>Publisher:</strong> {data.publisher}</li>
+          <li><strong>ISBN:</strong> {data.isbn}</li>
+          <li><strong>OCLC:</strong> {data.oclc}</li>
+        </ul>
+        <h2>Lender Codes</h2>
+        <ul className="lender-list">
+        {data.lenderData.map((item:string) => <li>{item}</li>)}
+        </ul>
+      </div>
     )
   }
 

@@ -78,6 +78,19 @@ main {
   justify-content: center;;
 }
 
+.book-data {
+  text-align: left;
+}
+
+.book-data ul {
+  list-style-type: none;
+}
+
+.lender-list {
+  height: 15rem;
+  overflow: scroll;
+}
+
 
 @keyframes scroll {
   from {
