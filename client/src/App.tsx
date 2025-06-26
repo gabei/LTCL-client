@@ -33,7 +33,6 @@ function App() {
     setMessage(`Searching for lender codes for ${isbn}. Do not navigate away from this page... `);
 
     const newData = await fetchData(isbn);
-    console.log(newData);
     setData(newData);
     setSearching(false);
     setSearchIsComplete(true);
