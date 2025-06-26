@@ -1,7 +1,7 @@
 import './BookData.css'
 import { type ApiResponse } from "../types/types"
 
-export default function BookData(data:ApiResponse) {
+export default function BookData({data}: {data:ApiResponse}) {
   function listItem(heading:string = "",data: string){
     return (
       <li>
@@ -10,11 +10,11 @@ export default function BookData(data:ApiResponse) {
     )
   }
 
-  function LenderList(data:ApiResponse){
-    console.log("bookdata.tsx: \n" + data);
+  function LenderList({lenders}: {lenders: Array<string>}){
+    console.log("bookdata.tsx: \n" + lenders);
     return (
       <ul className="lender-list">
-        {data.lenderData.map((item:string) => <li>{item}</li>)}
+        {lenders.map((item:string) => <li>{item}</li>)}
       </ul>
     )
   }
@@ -32,7 +32,7 @@ export default function BookData(data:ApiResponse) {
           {listItem("OCLC", data.oclc)}
         </ul>
         <h2>Lender Codes</h2>
-        <LenderList data={data}/>
+        <LenderList lenders={data.lenderData}/>
       </div>
   )
 }

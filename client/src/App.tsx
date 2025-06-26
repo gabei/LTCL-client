@@ -63,7 +63,7 @@ return (
             {searching && LoadingMessage(message)}
             {searchIsComplete && 
               <ErrorBoundary fallback={errorFallback}>
-                <BookData data={data}/> 
+                <BookData data={data} />
               </ErrorBoundary>
             }
         </div>
