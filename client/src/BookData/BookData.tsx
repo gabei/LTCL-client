@@ -1,9 +1,7 @@
 import './BookData.css'
 import { type ApiResponse } from "../types/types"
-import { ErrorBoundary } from 'react-error-boundary';
 
 export default function BookData(data:ApiResponse) {
-
   function listItem(heading:string = "",data: string){
     return (
       <li>
@@ -11,8 +9,6 @@ export default function BookData(data:ApiResponse) {
       </li>
     )
   }
-
-  const errorFallback = <p>Something went wrong. Double check the supplied lookup code and try again.</p>
 
   function LenderList(data:ApiResponse){
     return (
@@ -35,10 +31,7 @@ export default function BookData(data:ApiResponse) {
           {listItem("OCLC", data.oclc)}
         </ul>
         <h2>Lender Codes</h2>
-        <ErrorBoundary fallback={errorFallback}>
-          <LenderList data={data}/>
-        </ErrorBoundary>
+        <LenderList data={data}/>
       </div>
   )
- 
 }

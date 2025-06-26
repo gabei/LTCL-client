@@ -3,6 +3,7 @@ import './App.css'
 import LoadingMessage from './LoadingMessage/LoadingMessage';
 import BookData from './BookData/BookData';
 import { type ApiResponse } from './types/types';
+import { ErrorBoundary } from 'react-error-boundary';
 
 
 function App() {
@@ -34,7 +35,6 @@ function App() {
     setData(newData);
     setSearching(false);
     setSearchIsComplete(true);
-    console.log(newData);
   }
 
   const fetchData = async(query:string) => {
@@ -42,6 +42,8 @@ function App() {
     const response = await fetch(url + query);
     return response.json();
   }
+
+  const errorFallback = <p>Something went wrong. Double check the supplied lookup code and try again.</p>
 
   
 
@@ -57,7 +59,11 @@ return (
         </div>
         <div className="data-display">
             {searching && LoadingMessage(message)}
-            {searchIsComplete && BookData(data)}
+            {searchIsComplete && 
+              <ErrorBoundary fallback={errorFallback}>
+                <BookData data={data}/> 
+              </ErrorBoundary>
+            }
         </div>
       </main>
     </div>
