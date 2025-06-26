@@ -4,6 +4,7 @@ import LoadingMessage from './LoadingMessage/LoadingMessage';
 import BookData from './BookData/BookData';
 import { type ApiResponse } from './types/types';
 import { ErrorBoundary } from 'react-error-boundary';
+import dotenv from 'dotenv';
 
 
 function App() {
@@ -32,13 +33,14 @@ function App() {
     setMessage(`Searching for lender codes for ${isbn}. Do not navigate away from this page... `);
 
     const newData = await fetchData(isbn);
+    console.log(newData);
     setData(newData);
     setSearching(false);
     setSearchIsComplete(true);
   }
 
   const fetchData = async(query:string) => {
-    const url = "http://localhost:8000/search?code=";
+    const url = import.meta.env.VITE_QUERYENDPOINT;
     const response = await fetch(url + query);
     return response.json();
   }

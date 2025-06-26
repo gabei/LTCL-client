@@ -11,6 +11,7 @@ export default function BookData(data:ApiResponse) {
   }
 
   function LenderList(data:ApiResponse){
+    console.log("bookdata.tsx: \n" + data);
     return (
       <ul className="lender-list">
         {data.lenderData.map((item:string) => <li>{item}</li>)}
