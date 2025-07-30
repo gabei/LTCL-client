@@ -4,7 +4,6 @@ import LoadingMessage from './LoadingMessage/LoadingMessage';
 import BookData from './BookData/BookData';
 import { type ApiResponse } from './types/types';
 import { ErrorBoundary } from 'react-error-boundary';
-import dotenv from 'dotenv';
 
 
 function App() {
@@ -23,11 +22,12 @@ function App() {
     }
   );
 
-  const handleChange = (e:Event) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setIsbn(e.target.value);
   }
 
-  const handlesubmit = async (e:Event) => {
+  const handlesubmit = async (e:React.MouseEvent<HTMLButtonElement>) => {
+    if(!e) return
     setSearchIsComplete(false);
     setSearching(true);
     setMessage(`Searching for lender codes for ${isbn}. Do not navigate away from this page... `);
