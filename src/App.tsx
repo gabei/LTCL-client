@@ -39,7 +39,7 @@ function App() {
   }
 
   const fetchData = async(query:string) => {
-    const url = "https://git.heroku.com/ill-extended.git";
+    const url = "https://git.heroku.com/ill-extended.git/search?code=";
     const response = await fetch(url + query);
     return response.json();
   }
