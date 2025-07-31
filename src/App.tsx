@@ -39,7 +39,7 @@ function App() {
   }
 
   const fetchData = async(query:string) => {
-    const url = import.meta.env.VITE_QUERYENDPOINT;
+    const url = "https://git.heroku.com/ill-extended.git";
     const response = await fetch(url + query);
     return response.json();
   }
