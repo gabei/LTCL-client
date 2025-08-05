@@ -22,12 +22,12 @@ function App() {
     }
   );
 
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsbn(e.target.value);
   }
 
-  const handlesubmit = async (e:React.MouseEvent<HTMLButtonElement>) => {
-    if(!e) return
+  const handlesubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!e) return
     setSearchIsComplete(false);
     setSearching(true);
     setMessage(`Searching for lender codes for ${isbn}. Do not navigate away from this page... `);
@@ -38,17 +38,17 @@ function App() {
     setSearchIsComplete(true);
   }
 
-  const fetchData = async(query:string) => {
-    const url = "https://git.heroku.com/ill-extended.git:37628/search?code=";
+  const fetchData = async (query: string) => {
+    const url = "https://git.heroku.com/ill-extended.git:35118/search?code=";
     const response = await fetch(url + query);
     return response.json();
   }
 
   const errorFallback = <p>Something went wrong. Double check the supplied lookup code and try again.</p>
 
-  
 
-return (
+
+  return (
     <div>
       <header className="header">
         <div className={"header-texture " + (searching ? "animate-texture" : "")}></div>
@@ -59,12 +59,12 @@ return (
           <button onClick={handlesubmit}>Search</button>
         </div>
         <div className="data-display">
-            {searching && LoadingMessage(message)}
-            {searchIsComplete && 
-              <ErrorBoundary fallback={errorFallback}>
-                <BookData data={data} />
-              </ErrorBoundary>
-            }
+          {searching && LoadingMessage(message)}
+          {searchIsComplete &&
+            <ErrorBoundary fallback={errorFallback}>
+              <BookData data={data} />
+            </ErrorBoundary>
+          }
         </div>
       </main>
     </div>
