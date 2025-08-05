@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "https://git.heroku.com/ill-extended.git:35118",
+  "proxy": "https://git.heroku.com/ill-extended.git:7101",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
